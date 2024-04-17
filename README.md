@@ -32,7 +32,7 @@ The original parameter values are available in a block near the top of each file
 ## Running these simulations
 
 You must first compile [Chaste](https://github.com/Chaste/Chaste).
-Visit our [getting started](https://chaste.github.io/getting-started/) page for full details.
+Visit our [getting started](https://chaste.github.io/docs/) page for full details.
 
 From the `projects` directory, clone this repository:
 
