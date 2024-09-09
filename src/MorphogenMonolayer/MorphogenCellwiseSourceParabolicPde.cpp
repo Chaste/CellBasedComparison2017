@@ -11,11 +11,18 @@
 
 template<unsigned DIM>
 MorphogenCellwiseSourceParabolicPde<DIM>::MorphogenCellwiseSourceParabolicPde(AbstractCellPopulation<DIM,DIM>& rCellPopulation,
-        double duDtCoefficient,
-        double diffusionCoefficient,
-        double uptakeCoefficient,
-        double sourceWidth)
-        : CellwiseSourceParabolicPde<DIM>(rCellPopulation,duDtCoefficient, diffusionCoefficient, uptakeCoefficient ),
+                                                                              double constantSourceCoefficient, 
+                                                                              double linearSourceCoefficient, 
+                                                                              double diffusionCoefficient,
+                                                                              double duDtCoefficient,
+                                                                              bool scaleByCellVolume,
+                                                                              double sourceWidth)
+        : CellwiseSourceParabolicPde<DIM>(rCellPopulation,
+                                          constantSourceCoefficient,
+                                          linearSourceCoefficient, 
+                                          diffusionCoefficient, 
+                                          duDtCoefficient,
+                                          scaleByCellVolume),
           mSourceWidth(sourceWidth)
 {
 }
@@ -58,10 +65,10 @@ double MorphogenCellwiseSourceParabolicPde<DIM>::ComputeSourceTermAtNode(const N
 
     if (x>-0.5*mSourceWidth && x<0.5*mSourceWidth)
     {
-    	coefficient = this->mSourceCoefficient;
+    	coefficient = this->mConstantSourceCoefficient;
     }
 
-    double decay_coeficient = 0.01;
+    double decay_coeficient = this->mLinearSourceCoefficient;
 
     return coefficient - u*decay_coeficient;
 }

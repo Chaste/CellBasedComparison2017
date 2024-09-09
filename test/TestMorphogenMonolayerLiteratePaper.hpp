@@ -75,16 +75,13 @@
  */
 
 //static const double M_TIME_FOR_SIMULATION = 100; //100
-//static const double M_NUM_CELLS_ACROSS = 10; // 10
-//static const double M_UPTAKE_RATE = 0.01; // S in paper
-//static const double M_DIFFUSION_CONSTANT = 1e-4; // D in paper
-//static const double M_DUDT_COEFFICIENT = 1.0; // Not used in paper so 1
-
 static const double M_TIME_FOR_SIMULATION = 1.0;
 static const double M_NUM_CELLS_ACROSS = 10;
-static const double M_UPTAKE_RATE = 0.01; // S in paper
+static const double M_UPTAKE_RATE = 0.01; // f_prod in paper
+static const double M_DECAY_RATE = 0.01; //k_c in paper
 static const double M_DIFFUSION_CONSTANT = 1e-4; // D in paper
 static const double M_DUDT_COEFFICIENT = 1.0;
+static const double M_SOURCE_WIDTH = 2.0;
 
 class TestMorphogenMonolayerLiteratePaper : public AbstractCellBasedWithTimingsTestSuite
 {
@@ -114,8 +111,6 @@ private:
             // Note the first few recorded ages will be too short as cells start with some mass.
             //p_cell->SetBirthTime(0.0);
             p_cell->SetBirthTime(-20);
-
-
 
             p_cell->InitialiseCellCycleModel();
 
@@ -196,7 +191,7 @@ public:
         simulator.AddUpdateRule(p_switching_update_rule);
 
         // Make the Pde and BCS
-        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_DUDT_COEFFICIENT,M_DIFFUSION_CONSTANT,M_UPTAKE_RATE));
+        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_UPTAKE_RATE, M_DECAY_RATE, M_DIFFUSION_CONSTANT, M_DUDT_COEFFICIENT, false, M_SOURCE_WIDTH));
         MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (0.0));
 
         // Create a PDE Modifier object using this pde and bcs object
@@ -282,7 +277,7 @@ public:
         simulator.AddUpdateRule(p_adhesion_update_rule);
 
         // Make the Pde and BCS
-        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_DUDT_COEFFICIENT,(double)cell_width*(double)cell_width*M_DIFFUSION_CONSTANT,M_UPTAKE_RATE, 8.0));
+        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_UPTAKE_RATE, M_DECAY_RATE, (double)cell_width*(double)cell_width*M_DIFFUSION_CONSTANT, M_DUDT_COEFFICIENT, false, (double)cell_width*M_SOURCE_WIDTH));
         MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (0.0));
 
         // Create a PDE Modifier object using this pde and bcs object
@@ -352,7 +347,7 @@ public:
         simulator.AddForce(p_linear_force);
 
         // Make the Pde and BCS
-        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_DUDT_COEFFICIENT,M_DIFFUSION_CONSTANT,M_UPTAKE_RATE));
+        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_UPTAKE_RATE, M_DECAY_RATE, M_DIFFUSION_CONSTANT, M_DUDT_COEFFICIENT, false, M_SOURCE_WIDTH));
         MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (0.0));
 
         // Create a PDE Modifier object using this pde and bcs object
@@ -427,7 +422,7 @@ public:
         simulator.AddForce(p_linear_force);
 
         // Make the Pde and BCS
-        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_DUDT_COEFFICIENT,M_DIFFUSION_CONSTANT,M_UPTAKE_RATE));
+        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_UPTAKE_RATE, M_DECAY_RATE, M_DIFFUSION_CONSTANT, M_DUDT_COEFFICIENT, false, M_SOURCE_WIDTH));
         MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (0.0));
 
         // Create a PDE Modifier object using this pde and bcs object
@@ -504,7 +499,7 @@ public:
         // Create a pde modifier and pass it to the simulation 
 
         // Make the Pde and BCS
-        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_DUDT_COEFFICIENT,M_DIFFUSION_CONSTANT,M_UPTAKE_RATE));
+        MAKE_PTR_ARGS(MorphogenCellwiseSourceParabolicPde<2>, p_pde, (cell_population, M_UPTAKE_RATE, M_DECAY_RATE, M_DIFFUSION_CONSTANT, M_DUDT_COEFFICIENT, false, M_SOURCE_WIDTH));
         MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (0.0));
 
         // Create a PDE Modifier object using this pde and bcs object

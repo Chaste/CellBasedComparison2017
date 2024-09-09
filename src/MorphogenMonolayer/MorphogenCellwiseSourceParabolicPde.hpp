@@ -1,5 +1,5 @@
-#ifndef CELLWISESOURCEMORPHOGENPDE_HPP_
-#define CELLWISESOURCEMORPHOGENPDE_HPP_
+#ifndef MORPHOGENCELLWISESOURCEPARABOLICPDE_HPP_
+#define MORPHOGENCELLWISESOURCEPARABOLICPDE_HPP_
 
 #include "ChasteSerialization.hpp"
 #include <boost/serialization/base_object.hpp>
@@ -39,26 +39,28 @@ private:
     }
 
 public:
-
-    /**
-	 * Constructor.
-	 *
-	 * @param rCellPopulation reference to the cell population
-	 * @param duDtCoefficient rate of reaction (defaults to 1.0)
-	 * @param diffusionCoefficient rate of diffusion (defaults to 1.0)
-	 * @param uptakeCoefficient the coefficient of consumption of nutrient by cells (defaults to 0.0)
+	/**
+     * Constructor.
+     *
+     * @param rCellPopulation reference to the cell population
+     * @param constantSourceCoefficient the constant source term coefficient (defaults to 0.0)
+     * @param linearSourceCoefficient the linear source term coefficient (defaults to 0.0)
+     * @param diffusionCoefficient the rate of diffusion (defaults to 1.0)
+     * @param duDtCoefficient rate of reaction (defaults to 1.0)
+     * @param scaleByCellVolume whether to scale by cell volume (defaults to false)
 	 * @param sourceWidth the width of the source of morphgen in the centte of the mesh (defaults to 1.0)
-	 */
+     */
     MorphogenCellwiseSourceParabolicPde(AbstractCellPopulation<DIM, DIM>& rCellPopulation,
-                                   double duDtCoefficient = 1.0,
-                                   double diffusionCoefficient = 1.0,
-                                   double uptakeCoefficient = 0.0,
-                                   double sourceWidth = 2.0);
-
+                                        double constantSourceCoefficient=0.0, 
+                                        double linearSourceCoefficient=0.0,
+                                        double diffusionCoefficient=1.0,
+                                        double duDtCoefficient=1.0,
+                                		bool scaleByCellVolume=false,
+                               			double sourceWidth = 2.0);
     /**
-         * @return const reference to the cell population (used in archiving).
-         */
-        const AbstractCellPopulation<DIM>& rGetCellPopulation() const;
+     * @return const reference to the cell population (used in archiving).
+     */
+    const AbstractCellPopulation<DIM>& rGetCellPopulation() const;
 
 
     /**
@@ -141,4 +143,4 @@ inline void load_construct_data(
 }
 } // namespace ...
 
-#endif /*CELLWISESOURCEMORPHOGENPDE_HPP_*/
+#endif /*MORPHOGENCELLWISESOURCEPARABOLICPDE_HPP_*/
