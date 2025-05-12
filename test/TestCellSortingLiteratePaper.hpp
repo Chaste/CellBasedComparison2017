@@ -38,10 +38,12 @@
 #include "RandomMotionForce.hpp"
 #include "SimpleTargetAreaModifier.hpp"
 
+#include "NodesOnlyMesh.hpp"
+#include "NodeBasedCellPopulation.hpp"
+
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
 #include "HoneycombMeshGenerator.hpp"
 #include "DifferentialAdhesionGeneralisedLinearSpringForce.hpp"
-#include "RandomMotionForce.hpp"
 
 #include "OnLatticeSimulation.hpp"
 #include "CellPopulationAdjacencyMatrixWriter.hpp"
