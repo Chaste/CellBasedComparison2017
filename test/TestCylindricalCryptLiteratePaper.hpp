@@ -331,7 +331,7 @@ public:
 
         // Create a force law and pass it to the simulation
         MAKE_PTR(PathmanathanInteractionForce<2>, p_linear_force);
-        p_linear_force->SetMeinekeSpringStiffness(50.0);
+        p_linear_force->SetSpringStiffness(50.0);
         p_linear_force->SetCutOffLength(cut_off_length);
         simulator.AddForce(p_linear_force);
 
@@ -409,7 +409,7 @@ public:
 
         // Create a force law and pass it to the simulation
         MAKE_PTR(LinearSpringForce<2>, p_linear_force);
-        p_linear_force->SetMeinekeSpringStiffness(50.0);
+        p_linear_force->SetSpringStiffness(50.0);
         simulator.AddForce(p_linear_force);
 
         // Solid base boundary condition

@@ -313,7 +313,7 @@ public:
 
         // Create a force law and pass it to the simulation
         MAKE_PTR(DifferentialAdhesionPathmanathanInteractionForce<2>, p_differential_adhesion_force);
-        p_differential_adhesion_force->SetMeinekeSpringStiffness(50.0);
+        p_differential_adhesion_force->SetSpringStiffness(50.0);
         p_differential_adhesion_force->SetHomotypicLabelledSpringConstantMultiplier(1.0);
         p_differential_adhesion_force->SetHeterotypicSpringConstantMultiplier(0.1);
         p_differential_adhesion_force->SetCutOffLength(cut_off_length);
@@ -386,7 +386,7 @@ public:
 
         // Create a force law and pass it to the simulation
         MAKE_PTR(DifferentialAdhesionLinearSpringForce<2>, p_differential_adhesion_force);
-        p_differential_adhesion_force->SetMeinekeSpringStiffness(50.0);
+        p_differential_adhesion_force->SetSpringStiffness(50.0);
         p_differential_adhesion_force->SetHomotypicLabelledSpringConstantMultiplier(1.0);
         p_differential_adhesion_force->SetHeterotypicSpringConstantMultiplier(0.1);
         simulator.AddForce(p_differential_adhesion_force);
