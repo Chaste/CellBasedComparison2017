@@ -42,7 +42,7 @@
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
 #include "HoneycombMeshGenerator.hpp"
 #include "DiffusionForce.hpp"
-#include "RepulsionForce.hpp"
+#include "LogarithmicRepulsionForce.hpp"
 #include "LinearSpringForce.hpp"
 #include "PathmanathanInteractionForce.hpp"
 
