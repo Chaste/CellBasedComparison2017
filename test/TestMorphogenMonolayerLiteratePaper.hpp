@@ -48,7 +48,6 @@
 #include "PathmanathanInteractionForce.hpp"
 
 #include "NodeBasedCellPopulation.hpp"
-#include "LogarithmicRepulsionForce.hpp"
 
 #include "VertexBasedCellPopulation.hpp"
 #include "HoneycombVertexMeshGenerator.hpp"

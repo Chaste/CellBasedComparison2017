@@ -47,7 +47,6 @@
 #include "OnLatticeSimulation.hpp"
 
 #include "NagaiHondaForce.hpp"
-#include "LogarithmicRepulsionForce.hpp"
 #include "LinearSpringForce.hpp"
 #include "PathmanathanInteractionForce.hpp"
 #include "DiffusionCaUpdateRule.hpp"
