@@ -48,6 +48,8 @@
 
 #include "NagaiHondaForce.hpp"
 #include "RepulsionForce.hpp"
+#include "LinearSpringForce.hpp"
+#include "PathmanathanInteractionForce.hpp"
 #include "DiffusionCaUpdateRule.hpp"
 #include "VolumeConstraintPottsUpdateRule.hpp"
 #include "AdhesionPottsUpdateRule.hpp"
@@ -329,7 +331,7 @@ public:
         simulator.AddSimulationModifier(p_modifier);
 
         // Create a force law and pass it to the simulation
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(PathmanathanInteractionForce<2>, p_linear_force);
         p_linear_force->SetMeinekeSpringStiffness(50.0);
         p_linear_force->SetCutOffLength(cut_off_length);
         simulator.AddForce(p_linear_force);
@@ -407,7 +409,7 @@ public:
         simulator.AddSimulationModifier(p_modifier);
 
         // Create a force law and pass it to the simulation
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         p_linear_force->SetMeinekeSpringStiffness(50.0);
         simulator.AddForce(p_linear_force);
 

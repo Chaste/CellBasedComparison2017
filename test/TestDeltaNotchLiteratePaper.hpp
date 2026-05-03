@@ -43,7 +43,8 @@
 #include "HoneycombMeshGenerator.hpp"
 #include "DiffusionForce.hpp"
 #include "RepulsionForce.hpp"
-#include "GeneralisedLinearSpringForce.hpp"
+#include "LinearSpringForce.hpp"
+#include "PathmanathanInteractionForce.hpp"
 
 #include "OnLatticeSimulation.hpp"
 #include "DeltaNotchTrackingModifier.hpp"
@@ -314,7 +315,7 @@ public:
         simulator.AddSimulationModifier(p_differentiation_modifier);
 
         // Create a force law and pass it to the simulation
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(PathmanathanInteractionForce<2>, p_linear_force);
         p_linear_force->SetMeinekeSpringStiffness(50.0);
         p_linear_force->SetCutOffLength(cut_off_length);
         simulator.AddForce(p_linear_force);
@@ -378,7 +379,7 @@ public:
         simulator.AddSimulationModifier(p_differentiation_modifier);
 
         // Create a force law and pass it to the simulation
-        MAKE_PTR(GeneralisedLinearSpringForce<2>, p_linear_force);
+        MAKE_PTR(LinearSpringForce<2>, p_linear_force);
         p_linear_force->SetMeinekeSpringStiffness(50.0);
         p_linear_force->SetCutOffLength(1.5);
         simulator.AddForce(p_linear_force);
